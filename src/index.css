@@ -1,4 +1,5 @@
 [data-js="root"] {
+  display: flex;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,4 +9,19 @@
   background-color: #006eff;
   max-height: 20vh;
   width: 100vw;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+}
+
+.nav-item {
+  list-style: none;
+}
+
+.nav-link {
+  font-weight: bold;
+  text-decoration: none;
+  text-transform: uppercase;
 }
