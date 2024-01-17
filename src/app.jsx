@@ -28,6 +28,10 @@ const App = () => {
           </li>
         </ul>
       </nav>
+
+      <main>
+        <h1>Testes</h1>
+      </main>
     </>
   )
 }
