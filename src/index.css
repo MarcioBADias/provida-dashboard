@@ -1,5 +1,4 @@
 [data-js="root"] {
-  display: flex;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -7,7 +6,7 @@
 
 .navbar {
   background-color: #006eff;
-  max-height: 20vh;
+  height: 10vh;
   width: 100vw;
 }
 
