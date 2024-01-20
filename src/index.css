@@ -1,4 +1,4 @@
-[data-js="root"] {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -11,16 +11,48 @@
 }
 
 .navbar-nav {
-  display: flex;
-  justify-content: space-around;
+  align-items: center;
+  display: flex; 
+  justify-content: center;
+  height: 100%;
 }
 
 .nav-item {
+  color: wheat;
   list-style: none;
+  margin: 0 1rem;
 }
 
 .nav-link {
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.newsLetter{
+  background: rgba(38, 139, 38, 0.5);
+  border-radius: 15px;
+  margin-right: 1rem;
+  min-height: 70vh;
+  min-width: 60vw;
+}
+
+.optionBox{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box{
+  background: rgba(38, 139, 38, 0.5);
+  border-radius: 15px;
+  min-height: 22vh;
+  min-width: 30vw;
 }

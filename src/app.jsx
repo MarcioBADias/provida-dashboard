@@ -6,13 +6,20 @@ const App = () => {
     <>
       <Menu />
       <div className="container">
-        <h1>Convenios</h1>
-      </div>
-      <div className="container">
-        <h1>Medicos</h1>
-      </div>
-      <div className="container">
-        <h1>Exames</h1>
+        <div className="newsLetter">
+          
+        </div>
+        <div className="optionBox">
+          <div className="convenios box">
+            
+          </div>
+          <div className="medicos box">
+            
+          </div>
+          <div className="examos box">
+            
+          </div>
+        </div>
       </div>
     </>
   )
