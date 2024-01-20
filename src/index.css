@@ -1,27 +1,70 @@
-[data-js="root"] {
-  display: flex;
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+[data-js="root"]{
+  background: url('/public/page-bg.png') center/cover;
+  height: 100vh;
 }
 
 .navbar {
-  background-color: #006eff;
-  max-height: 20vh;
+  height: 10vh;
   width: 100vw;
 }
 
 .navbar-nav {
-  display: flex;
-  justify-content: space-around;
+  align-items: center;
+  display: flex; 
+  justify-content: center;
+  height: 100%;
 }
 
 .nav-item {
+  color: wheat;
   list-style: none;
+  margin: 0 1rem;
 }
 
 .nav-link {
   font-weight: bold;
   text-decoration: none;
   text-transform: uppercase;
+}
+
+.container{
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.newsLetter{
+  background: url('/public/newsletter-bg.png') center/cover;
+  border-radius: 15px;
+  margin-right: 1rem;
+  min-height: 70vh;
+  min-width: 60vw;
+}
+
+.optionBox{
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.box{
+  background: rgba(38, 139, 38, 0.5);
+  border-radius: 15px;
+  min-height: 22vh;
+  min-width: 30vw;
+}
+
+.medicos{
+  background: url('/public/medic-bg.png') center/cover;
+}
+
+.exames{
+  background: url('/public/exames.png') center/cover;
 }
