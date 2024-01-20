@@ -1,6 +1,5 @@
 import { Menu } from "./components/menu"
 
-
 const App = () => {
   return (
     <>
@@ -16,7 +15,7 @@ const App = () => {
           <div className="medicos box">
             
           </div>
-          <div className="examos box">
+          <div className="exames box">
             
           </div>
         </div>

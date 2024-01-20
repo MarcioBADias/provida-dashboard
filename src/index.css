@@ -1,11 +1,15 @@
 * {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+[data-js="root"]{
+  background: url('/public/page-bg.png') center/cover;
+  height: 100vh;
 }
 
 .navbar {
-  background-color: #006eff;
   height: 10vh;
   width: 100vw;
 }
@@ -36,7 +40,7 @@
 }
 
 .newsLetter{
-  background: rgba(38, 139, 38, 0.5);
+  background: url('/public/newsletter-bg.png') center/cover;
   border-radius: 15px;
   margin-right: 1rem;
   min-height: 70vh;
@@ -55,4 +59,12 @@
   border-radius: 15px;
   min-height: 22vh;
   min-width: 30vw;
+}
+
+.medicos{
+  background: url('/public/medic-bg.png') center/cover;
+}
+
+.exames{
+  background: url('/public/exames.png') center/cover;
 }
