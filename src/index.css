@@ -5,7 +5,7 @@
 }
 
 [data-js="root"]{
-  background: url('/public/page-bg.png') center/cover;
+  background: url('/page-bg.png') center/cover;
   height: 100vh;
 }
 
@@ -40,7 +40,7 @@
 }
 
 .newsLetter{
-  background: url('/public/newsletter-bg.png') center/cover;
+  background: url('/newsletter-bg.png') center/cover;
   border-radius: 15px;
   margin-right: 1rem;
   min-height: 70vh;
@@ -62,9 +62,9 @@
 }
 
 .medicos{
-  background: url('/public/medic-bg.png') center/cover;
+  background: url('/medic-bg.png') center/cover;
 }
 
 .exames{
-  background: url('/public/exames.png') center/cover;
+  background: url('/exames.png') center/cover;
 }
