@@ -1,36 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
 * {
   box-sizing: border-box;
+  font-family: 'Roboto', Times, serif;
   margin: 0;
   padding: 0;
 }
 
-[data-js="root"]{
-  background: url('/public/page-bg.png') center/cover;
-  height: 100vh;
+:root {
+  --color-primary-100: #71C5E8;
+  --color-primary-300: #449CD5;
+  --color-primary-500: #005EB8;
+  --color-primary-700: #004890;
+  --color-primary-900: #002855;
+  --color-secondary-100: #F5ECE3;
+  --color-secondary-300: #DDC0A2;
+  --color-secondary-500: #56c734;
+  --color-secondary-700: #886B4D;
+  --color-secondary-900: #292017;
 }
 
-.navbar {
-  height: 10vh;
-  width: 100vw;
-}
-
-.navbar-nav {
-  align-items: center;
-  display: flex; 
-  justify-content: center;
-  height: 100%;
-}
-
-.nav-item {
-  color: wheat;
-  list-style: none;
-  margin: 0 1rem;
-}
-
-.nav-link {
-  font-weight: bold;
-  text-decoration: none;
-  text-transform: uppercase;
+body{
+  background: var(--color-secondary-100);
 }
 
 .container{
@@ -40,7 +31,7 @@
 }
 
 .newsLetter{
-  background: url('/public/newsletter-bg.png') center/cover;
+  background: url('/newsletter-bg.png') center/cover;
   border-radius: 15px;
   margin-right: 1rem;
   min-height: 70vh;
@@ -62,9 +53,9 @@
 }
 
 .medicos{
-  background: url('/public/medic-bg.png') center/cover;
+  background: url('/medic-bg.png') center/cover;
 }
 
 .exames{
-  background: url('/public/exames.png') center/cover;
+  background: url('/exames.png') center/cover;
 }
