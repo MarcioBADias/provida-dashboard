@@ -13,22 +13,30 @@ const MedicosPage = () => {
     return (
         <>
             <Menu />
-            <div>
-                <h1>Página de Medicos</h1>
-            </div>
+            <h1 style={{textAlign: 'center', marginTop: '1rem'}}>Lista de medicos e especialidades</h1>
+            <S.SearchContainer>
+                    <div>
+                        <S.SearchInput type="text" className="search" placeholder='Buscar Profissional...'/>
+                        <S.SearchBtn className="btn-search">Buscar</S.SearchBtn>
+                    </div>
+                    <div>
+                        <S.SearchInput type="text" className="search" placeholder='Buscar por especialidade...'/>
+                        <S.SearchBtn className="btn-search">Buscar</S.SearchBtn>
+                    </div>
+            </S.SearchContainer>
             <S.CardContainer>
                 {
                     medicsData.map(medic => (
                             <S.Card key={medic.crm}>
                                 <S.CardBody className="card-body">
                                     <S.MedAvatar />
-                                    <h5 className="card-title">{medic?.name}</h5>
+                                    <h3 className="card-title">{medic?.name}</h3>
                                     <p className="card-text">CRM: {medic?.crm}</p>
                                     <p>Especialidade:{medic?.specialty}</p>
                                     <div>
-                                        <a href="#" className="btn btn-primary">Amil</a>
-                                        <a href="#" className="btn btn-primary">Bradesco</a>
-                                        <a href="#" className="btn btn-primary">Notredame</a>
+                                        <S.ConvBtn convenio={'amil'} >Amil</S.ConvBtn>
+                                        <S.ConvBtn >Bradesco</S.ConvBtn>
+                                        <S.ConvBtn >Notredame</S.ConvBtn>
                                     </div>
                                 </S.CardBody>
                             </S.Card>
