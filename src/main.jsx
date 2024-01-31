@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client'
 import { App } from './app.jsx'
 import './index.css'
 import { ConveniosPage } from "./pages/conveniosPage.jsx"
-import { MedicosPage } from "./pages/medicos-page/madicosPage.jsx"
+import { MedicosPage } from "./pages/medicos-page/medicosPage.jsx"
 import { ExamesPage } from "./pages/examesPage.jsx"
 import { NewsLetterPage } from "./pages/newsLetterPage.jsx"
 
