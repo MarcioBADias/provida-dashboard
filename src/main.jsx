@@ -5,7 +5,7 @@ import { App } from './app.jsx'
 import './index.css'
 import { ConveniosPage } from "./pages/conveniosPage.jsx"
 import { MedicosPage } from "./pages/medicos-page/medicosPage.jsx"
-import { ExamesPage } from "./pages/examesPage.jsx"
+import { ExPage } from "./pages/exames-page/examesPage.jsx"
 import { NewsLetterPage } from "./pages/newsLetterPage.jsx"
 
 const rootElement = document.querySelector('[data-js="root"]')
@@ -19,7 +19,7 @@ root.render(
             <Route path="/" element={<App />} />
             <Route path="/convenios" element={<ConveniosPage />} />
             <Route path="/medicos" element={<MedicosPage />} />
-            <Route path="/exames" element={<ExamesPage />} />
+            <Route path="/exames" element={<ExPage />} />
             <Route path="/newsLetter" element={<NewsLetterPage />} />
         </Routes>
     </Router>
