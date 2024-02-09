@@ -59,3 +59,10 @@ body{
 .exames{
   background: url('/exames.png') center/cover;
 }
+
+h2{
+  position: absolute;
+  padding: 5rem 10rem 0 0;
+  text-transform: uppercase;
+  color: var(--color-primary-900);
+}
