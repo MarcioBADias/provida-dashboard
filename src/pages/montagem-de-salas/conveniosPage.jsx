@@ -6,13 +6,14 @@ const ConveniosPage = () => {
   const [data, setData] = useState('')
   const [turno, setTurno] = useState('manha')
   const [medicos, setMedicos] = useState([])
+  const [formData, setFormData] = useState(null)
 
-  const handleDataChange = (event) => {
-    setData(event.target.value)
+  const handleDataChange = (e) => {
+    setData(e.target.value)
   }
 
-  const handleTurnoChange = (event) => {
-    setTurno(event.target.value)
+  const handleTurnoChange = (e) => {
+    setTurno(e.target.value)
   }
 
   const handleAddMedico = () => {
@@ -28,9 +29,9 @@ const ConveniosPage = () => {
     setMedicos(updatedMedicos)
   }
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setMedicos([])
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setFormData({ data, turno, medicos })
   }
 
   return (
@@ -102,41 +103,34 @@ const ConveniosPage = () => {
           <button type="submit">Enviar</button>
         </S.FormSalas>
       </div>
-      <S.TableArea>
-        <table style={{ minWidth: '40%' }} border="1">
-          <thead>
-            <tr>
-              <th colspan="2">Data</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="2">11/02/2024 - Segunda-feira</td>
-            </tr>
-            <tr>
-              <td>Turno</td>
-              <td>Horário</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <table style={{ minWidth: '40%' }} border="1">
-          <thead>
-            <tr>
-              <th colspan="2">Data</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td colspan="2">11/02/2024 - Segunda-feira</td>
-            </tr>
-            <tr>
-              <td>Turno</td>
-              <td>Horário</td>
-            </tr>
-          </tbody>
-        </table>
-      </S.TableArea>
+      {formData && (
+        <S.TableArea>
+          <table style={{ minWidth: '40%' }} border="1">
+            <thead>
+              <tr>
+                <td colspan="3">{formData.data} - Segunda-feira</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colspan="3">{formData.turno}</td>
+              </tr>
+              <tr>
+                <td>Medico</td>
+                <td>horario</td>
+                <td>sala</td>
+              </tr>
+              {formData.medicos.map((medico, index) => (
+                <tr key={index}>
+                  <td>{medico.medico}</td>
+                  <td>{`${medico.inicio} - ${medico.fim}`}</td>
+                  <td>{medico.sala}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </S.TableArea>
+      )}
     </>
   )
 }

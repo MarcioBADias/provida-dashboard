@@ -10,7 +10,6 @@ export const FormSalas = styled.form`
 export const InputSalas = styled.div`
   align-items: center;
   display: flex;
-  flex-direction: column;
   gap: 0.5rem;
 `
 export const TableArea = styled.div`
