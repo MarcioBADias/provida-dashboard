@@ -1,37 +1,77 @@
-import { useState } from 'react'
+import { useEffect, useReducer } from 'react'
 import { Menu } from '../../components/menu/menu'
 import * as S from './style'
 
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'set_dataMedics':
+      return {
+        ...state,
+        dataMedics: action.payload?.length > 0 ? action.payload : [],
+      }
+    case 'set_day':
+      return { ...state, day: action.payload }
+    case 'set_turn':
+      return { ...state, turn: action.payload }
+    case 'add_medics':
+      return {
+        ...state,
+        medics: [
+          ...state.medics,
+          { medico: '', especialidade: '', inicio: '', fim: '', sala: '' },
+        ],
+      }
+    case 'update_medico':
+      const { index, key, value } = action.payload
+      const updatedMedics = [...state.medics]
+      updatedMedics[index][key] = value
+      return { ...state, medics: updatedMedics }
+    case 'set_formData':
+      return {
+        ...state,
+        formData: {
+          day: state.day,
+          turn: state.turn,
+          medics: state.medics,
+        },
+      }
+    default:
+      return state
+  }
+}
+
 const ConveniosPage = () => {
-  const [data, setData] = useState('')
-  const [turno, setTurno] = useState('manha')
-  const [medicos, setMedicos] = useState([])
-  const [formData, setFormData] = useState(null)
+  const [state, dispatch] = useReducer(reducer, {
+    day: null,
+    turn: 'manha',
+    medics: [],
+    dataMedics: [],
+    formData: null,
+  })
 
-  const handleDataChange = (e) => {
-    setData(e.target.value)
-  }
+  useEffect(() => {
+    fetch(
+      'https://raw.githubusercontent.com/MarcioBADias/apis-provida/main/medics.json',
+    )
+      .then((r) => r.json())
+      .then((data) => dispatch({ type: 'set_dataMedics', payload: data }))
+      .catch(console.log)
+  }, [])
 
-  const handleTurnoChange = (e) => {
-    setTurno(e.target.value)
-  }
+  const handleDataChange = (e) =>
+    dispatch({ type: 'set_day', payload: e.target.value })
 
-  const handleAddMedico = () => {
-    setMedicos([
-      ...medicos,
-      { medico: '', especialidade: '', inicio: '', fim: '', sala: '' },
-    ])
-  }
+  const handleTurnoChange = (e) =>
+    dispatch({ type: 'set_turn', payload: e.target.value })
 
-  const handleMedicoChange = (index, key, value) => {
-    const updatedMedicos = [...medicos]
-    updatedMedicos[index][key] = value
-    setMedicos(updatedMedicos)
-  }
+  const handleAddMedic = () => dispatch({ type: 'add_medics' })
+
+  const handleMedicChange = (index, key, value) =>
+    dispatch({ type: 'update_medico', payload: { index, key, value } })
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    setFormData({ data, turno, medicos })
+    dispatch({ type: 'set_formData' })
   }
 
   return (
@@ -42,19 +82,19 @@ const ConveniosPage = () => {
         <S.FormSalas onSubmit={handleSubmit}>
           <label>
             Data:
-            <input type="date" value={data} onChange={handleDataChange} />
+            <input type="date" value={state.day} onChange={handleDataChange} />
           </label>
           <label>
             Turno:
-            <select value={turno} onChange={handleTurnoChange}>
+            <select value={state.turn} onChange={handleTurnoChange}>
               <option value="manha">Manhã</option>
               <option value="tarde">Tarde</option>
             </select>
           </label>
-          <button type="button" onClick={handleAddMedico}>
+          <button type="button" onClick={handleAddMedic}>
             Adicionar Médico
           </button>
-          {medicos.map((medico, index) => (
+          {state.medics.map((medico, index) => (
             <div key={index}>
               <S.InputSalas>
                 <input
@@ -62,7 +102,7 @@ const ConveniosPage = () => {
                   placeholder="Médico"
                   value={medico.medico}
                   onChange={(e) =>
-                    handleMedicoChange(index, 'medico', e.target.value)
+                    handleMedicChange(index, 'medico', e.target.value)
                   }
                 />
                 <input
@@ -70,7 +110,7 @@ const ConveniosPage = () => {
                   placeholder="Especialidade"
                   value={medico.especialidade}
                   onChange={(e) =>
-                    handleMedicoChange(index, 'especialidade', e.target.value)
+                    handleMedicChange(index, 'especialidade', e.target.value)
                   }
                 />
                 <input
@@ -78,7 +118,7 @@ const ConveniosPage = () => {
                   placeholder="Início"
                   value={medico.inicio}
                   onChange={(e) =>
-                    handleMedicoChange(index, 'inicio', e.target.value)
+                    handleMedicChange(index, 'inicio', e.target.value)
                   }
                 />
                 <input
@@ -86,7 +126,7 @@ const ConveniosPage = () => {
                   placeholder="Fim"
                   value={medico.fim}
                   onChange={(e) =>
-                    handleMedicoChange(index, 'fim', e.target.value)
+                    handleMedicChange(index, 'fim', e.target.value)
                   }
                 />
                 <input
@@ -94,7 +134,7 @@ const ConveniosPage = () => {
                   placeholder="Sala"
                   value={medico.sala}
                   onChange={(e) =>
-                    handleMedicoChange(index, 'sala', e.target.value)
+                    handleMedicChange(index, 'sala', e.target.value)
                   }
                 />
               </S.InputSalas>
@@ -103,24 +143,48 @@ const ConveniosPage = () => {
           <button type="submit">Enviar</button>
         </S.FormSalas>
       </div>
-      {formData && (
+      {state.formData && (
         <S.TableArea>
           <table style={{ minWidth: '40%' }} border="1">
             <thead>
               <tr>
-                <td colspan="3">{formData.data} - Segunda-feira</td>
+                <td colSpan="3">{state.formData.day}</td>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td colspan="3">{formData.turno}</td>
+                <td colSpan="3">{state.formData.turn}</td>
               </tr>
               <tr>
                 <td>Medico</td>
                 <td>horario</td>
                 <td>sala</td>
               </tr>
-              {formData.medicos.map((medico, index) => (
+              {state.formData.medics.map((medico, index) => (
+                <tr key={index}>
+                  <td>{medico.medico}</td>
+                  <td>{`${medico.inicio} - ${medico.fim}`}</td>
+                  <td>{medico.sala}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <table style={{ minWidth: '40%' }} border="1">
+            <thead>
+              <tr>
+                <td colSpan="3">{state.formData.day}</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td colSpan="3">{state.formData.turn}</td>
+              </tr>
+              <tr>
+                <td>Medico</td>
+                <td>horario</td>
+                <td>sala</td>
+              </tr>
+              {state.formData.medics.map((medico, index) => (
                 <tr key={index}>
                   <td>{medico.medico}</td>
                   <td>{`${medico.inicio} - ${medico.fim}`}</td>
